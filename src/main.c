@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/22 16:20:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/26 13:53:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 
 //execute the command before redirecting it into the file 
 
-char	*find_executables(const char *cmd) //article stackoverflow
+/*char	*find_executables(const char *cmd) //article stackoverflow*/
 //search for the command in each directory listed in PATH
 
-char	**parse_command(const char *cmd)
+/*char	**parse_command(const char *cmd)
 {
 	char	**
 	//split the command into an array of strings, handling spaces and quotes.
-}
+}*/
 
 
 //piping: create a pipe
@@ -35,7 +35,7 @@ char	**parse_command(const char *cmd)
 
 //check the result of all the system calls like open, pipe, fork, execve, etc.
 
-int main(int argc, char **argv, )
+int main(int argc, char **argv, char **envp)
 {
 	
 	int		fd[2];
@@ -53,6 +53,5 @@ int main(int argc, char **argv, )
 	{
 		
 	}
-	
-
+	return (0);
 }

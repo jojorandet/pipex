@@ -7,6 +7,7 @@ UNAME := $(shell uname)
 CFLAGS = -Wall -Werror -Wextra -g
 ifeq ($(UNAME), Darwin)
 CFLAGS += -fsanitize=address
+endif
 
 SRCS			=	main.c \
 
@@ -22,7 +23,7 @@ $(NAME): $(OBJ) | $(DIR_BIN)
 $(DIR_BIN)/%.o: $(DIR_SRC)/%.c | $(DIR_BIN)
 	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
-$(DIR_BIN)
+$(DIR_BIN):
 	@mkdir -p $@
 
 clean:
