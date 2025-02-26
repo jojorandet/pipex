@@ -1,6 +1,6 @@
 NAME = pipex
 
-DIR_BIN		=	./bin 
+DIR_BIN		=	./bin
 DIR_SRC		=	./src
 
 UNAME := $(shell uname)
