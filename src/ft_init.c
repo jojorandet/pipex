@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 15:51:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 16:17:32 by jrandet          ###   ########.fr       */
+/*   Created: 2025/02/26 16:47:44 by jrandet           #+#    #+#             */
+/*   Updated: 2025/02/26 17:51:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_parsing(int argc, char **argv)
+void    set_pid(char **argv, char **env)
 {
-	int	i;
-	int	return_val;
+    t_pipex pipex;
+    (void)argv;
+    (void)env;
 
-	i = 0;
-	return_val = 1;
-	if (argc != 5)
-	{
-		return_val = 0;
-		return (return_val);
-	}
-	while (argv[i])
-	{
-		if (!argv[i] || !ft_strcmp(argv[i], " "))
-		{
-			return_val = 0;
-			break ;
-		}
-		i++;
-	}
-	return (return_val);
+    if (pipe(pipex.connect.fd_array) == -1)
+        error_display(&pipex, "Pipe could not be created\n");
+    pipex.pid = fork();
+    if (pipex.pid == -1)
+        error_display(&pipex, "Child process could not be created\n");
+    return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 16:22:37 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:07:23 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@
 
 //check the result of all the system calls like open, pipe, fork, execve, etc.
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **env)
 {
-	if (!ft_parsing(argc, argv))
+	(void)argc;
+	/*if (!ft_parsing(argc, argv))
 	{
-		write(2, "Error! input is invalid. infile cmd1 | cmd2 outfile\n", 53);
+		write(2, "Invalid input! filein cmd1 | cmd2 fileout\n", 43);
 		exit(EXIT_FAILURE);
-	}
+	}*/
+	printf("%d\n", ft_strcmp(argv[1], "hello\n"));
+	ft_putstr("ft pustr works\n");
+	set_pid(argv, env);
+	return (0);
 }

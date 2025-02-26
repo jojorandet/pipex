@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 15:10:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 18:04:27 by jrandet          ###   ########.fr       */
+/*   Created: 2025/02/22 15:51:18 by jrandet           #+#    #+#             */
+/*   Updated: 2025/02/26 18:02:06 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_parsing(int argc, char **argv)
 {
 	int	i;
+	int	return_val;
 
 	i = 0;
-	while (s1[i] && s2[i])
+	return_val = 1;
+	if (argc != 5)
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		return_val = 0;
+		return (return_val);
+	}
+	while (argv[i])
+	{
+		if (!argv[i] || !ft_strcmp(argv[i], " "))
+		{
+			return_val = 0;
+			break ;
+		}
 		i++;
 	}
-	return (0);
-}
-
-void	ft_putstr(char *s)
-{
-	if (!s)
-		return ;
-	while (*s)
-		write(1, s++, 1);
+	return (return_val);
 }
