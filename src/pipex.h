@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 17:50:46 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:36:18 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		main(int argc, char **argv, char **env);
 int		ft_parsing(int argc, char **argv);
 void    set_pid(char **argv, char **env);
 void	error_display(t_pipex *pipex, char *error_msg);
+void    ft_split(char *s, char c);
 
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr(char *s);

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 18:11:17 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/26 18:37:30 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 //check the result of all the system calls like open, pipe, fork, execve, etc.
 
 int	main(int argc, char **argv, char **env)
-{
+{	
 	(void)argc;
 	if (!ft_parsing(argc, argv))
 	{
@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char **env)
 	}
 	printf("%d\n", ft_strcmp(argv[1], "hello\n"));
 	ft_putstr("ft pustr works\n");
+	ft_split(argv[1], ' ');
 	set_pid(argv, env);
 	return (0);
 }

@@ -11,6 +11,7 @@ endif
 
 SRCS			=	main.c \
 					ft_utils.c \
+					ft_split.c \
 					ft_parsing.c \
 					ft_init.c \
 					ft_error_handling.c 

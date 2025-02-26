@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 15:51:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/26 18:39:00 by jrandet          ###   ########.fr       */
+/*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
+/*   Updated: 2025/02/26 18:41:07 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_parsing(int argc, char **argv)
+static int  ft_count_words(char *s, char c)
 {
-	int	i;
-	int	return_val;
+	int count_words;
 
-	i = 0;
-	return_val = 1;
-	if (argc != 5)
+	while (*s && *s == c)
+		s++;
+	while (*s)
 	{
-		return_val = 0;
-		return (return_val);
+		while(*s && *s == c)
+			s++;
+		if (*s != c)
+			count_words++;
+		while (*s && *s != c)
+			s++;
 	}
-	while (argv[i])
-	{
-		if (!argv[i] || !ft_strcmp(argv[i], " "))
-		{
-			return_val = 0;
-			break ;
-		}
-		i++;
-	}
-	return (return_val);
+	return (count_words);
+}
+
+void	ft_split(char *s, char c)
+{
+	int count_words;
+	
+	if (!s || s[0] == '\0')
+		return ;
+	count_words = ft_count_words(s, c);
+	printf("number of words %d\n", count_words);
+	return ;
 }
