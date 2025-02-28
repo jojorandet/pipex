@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/27 17:18:54 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/28 11:16:39 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	ft_count_words(char *s, char c)
+static size_t	ft_count_words(char *s, char c)
 {
-	int	count_words;
+	size_t	count_words;
 
 	count_words = 0;
 	while (*s)
@@ -33,6 +33,7 @@ static int	clean_array(char **array)
 {
 	int	i;
 
+	i = 0;
 	while (array[i])
 	{
 		free(array[i]);
@@ -42,15 +43,16 @@ static int	clean_array(char **array)
 	return (0);
 }
 
-static char	**fill_array(char *s, char ***array, char c)
+static int	fill_array(char *s, char **array, char c)
 {
 	char	*end;
 	char	*sdup_str;
 	size_t	i;
 
+	i = 0;
 	while (*s)
 	{
-		while (*s == 'c')
+		while (*s && *s == c)
 			s++;
 		end = s;
 		while (*end && *end != c)
@@ -59,14 +61,15 @@ static char	**fill_array(char *s, char ***array, char c)
 		{
 			sdup_str = ft_strndup(s, end - s);
 			if (!sdup_str)
-				clean_array(array);
-			*array[i] = sdup_str;
-			i++;
+				return (clean_array(array));
+			array[i++] = sdup_str;
 		}
 		s = end;
 	}
-	array[i] = '\0';
-	return (array);
+	printf("finished entering fill array\n");
+	array[i] = NULL;
+	print_double_array(array);
+	return (1);
 }
 
 char	**ft_split(char *s, char c)
@@ -74,15 +77,17 @@ char	**ft_split(char *s, char c)
 	int		count_words;
 	char	**split_array;
 
+	count_words = 0;
 	if (!s || s[0] == '\0')
-		return ;
-	count_words = ft_count_words(s, c);
-	if (count_words < 0)
 		return (ft_calloc(1, sizeof(char *)));
-	split_array = (char **)malloc(sizeof(*split_array) * (count_words + 1));
+	count_words = ft_count_words(s, c);
+	printf("count words %d\n", count_words);
+	split_array = ft_calloc(count_words + 1, sizeof(char *));
 	if (!split_array)
 		return (NULL);
-	if (fill_array(s, &split_array, c) == NULL)
+	if (!fill_array(s, split_array, c))
 		return (NULL);
 	return (split_array);
 }
+
+//need to return the empty string

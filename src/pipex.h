@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/27 18:22:44 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/28 10:55:56 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	print_double_array(char **s);
 
 int		ft_strcmp(char *s1, char *s2);
 void	ft_putstr(char *s);
-int		ft_strlen(char *s);
+size_t	ft_strlen(char *s);
 char	*ft_strndup(char *s, size_t n);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

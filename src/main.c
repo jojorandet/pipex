@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/27 18:22:47 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/28 11:16:50 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	print_double_array(char **s)
 
 int	main(int argc, char **argv, char **env)
 {	
-	char	**str;
-
 	(void)argc;
 	/*if (!ft_parsing(argc, argv))
 	{
@@ -56,9 +54,7 @@ int	main(int argc, char **argv, char **env)
 		exit(EXIT_FAILURE);
 	}*/
 	printf("%d\n", ft_strcmp(argv[1], "hello\n"));
-	ft_putstr("ft pustr works\n");
-	str = ft_split(argv[1], ' ');
-	print_double_array(str);
+	ft_split(argv[1], ' ');
 	get_pid(argv, env);
 	return (0);
 }
