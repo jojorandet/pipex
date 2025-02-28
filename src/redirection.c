@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:47:44 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 11:51:41 by jrandet          ###   ########.fr       */
+/*   Created: 2025/02/28 11:42:15 by jrandet           #+#    #+#             */
+/*   Updated: 2025/02/28 11:54:56 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_pid(char **argv, char **env)
+void	redirect_child_process(t_pipex *pipex, char **argv)
 {
-	t_pipex	pipex;
+	int	fd_in;
 
-	(void)env;
-	(void)argv;
-	if (pipe(pipex.pipefd) == -1)
-		error_display(&pipex, "Pipe could not be created\n");
-	pipex.pid = fork();
-	if (pipex.pid == -1)
-		error_display(&pipex, "Child process could not be created\n");
-	if (pipex.pid == 0)
-	{
-		redirect_child_process(&pipex, argv);
-		//execute_cmd(argv[2], env);
-	}
-	return ;
+	fd_in = open(argv[1],  )
 }

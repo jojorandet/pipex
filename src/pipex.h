@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 10:55:56 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/02/28 11:51:07 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,10 @@
 
 # define BUFFERSIZE 100
 
-typedef union u_pipe_ends
-{
-	int	fd_array[2];
-	struct
-	{
-		int	in;
-		int	out;
-	};
-}				t_pipe_ends;
-
 typedef struct s_pipex
 {
 	int			pid;
-	int			status;
-	t_pipe_ends	connect;
+	int			pipefd[2];
 }				t_pipex;
 
 int		main(int argc, char **argv, char **env);
@@ -53,5 +42,8 @@ void	ft_putstr(char *s);
 size_t	ft_strlen(char *s);
 char	*ft_strndup(char *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
+
+void	redirect_child_process(t_pipex *pipex, char **argv);
+
 
 #endif
