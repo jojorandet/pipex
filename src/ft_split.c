@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 16:37:34 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 18:44:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_count_words(char *s, char c)
 	return (count_words);
 }
 
-static int	clean_array(char **array)
+int	clean_array(char **array)
 {
 	int	i;
 
@@ -68,7 +68,6 @@ static int	fill_array(char *s, char **array, char c)
 	}
 	printf("finished entering fill array\n");
 	array[i] = NULL;
-	print_string_array(array);
 	return (1);
 }
 

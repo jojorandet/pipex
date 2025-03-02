@@ -6,13 +6,13 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:44:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 11:08:36 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 18:18:48 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static	char	*handle_empty_string(void)
+char	*handle_empty_string(void)
 {
 	char	*duplicate;
 	

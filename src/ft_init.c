@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 16:47:44 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 16:39:45 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 18:45:02 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	get_pid(char **argv, char **env)
 {
 	t_pipex	pipex;
 
-	(void)env;
 	(void)argv;
 	if (pipe(pipex.pipefd) == -1)
 		error_display(&pipex, "Pipe could not be created\n");
