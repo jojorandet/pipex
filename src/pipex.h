@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 11:51:07 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 12:10:51 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ char	*ft_strndup(char *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 
 void	redirect_child_process(t_pipex *pipex, char **argv);
-
+void	redirect_parent_process(t_pipex *pipex, char **argv);
 
 #endif
