@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:42:15 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 12:10:23 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 12:38:49 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	redirect_parent_process(t_pipex *pipex, char **argv)
 	if (dup2(pipex->pipefd[0], STDIN_FILENO) == -1
 		|| dup2(fd_out, STDOUT_FILENO) == -1)
 		error_display(pipex, "Error: Parent dup2.");
-	close(fd_out);
-	close(pipex->pipefd[0]);
+	if (close(fd_out) == -1 || close(pipex->pipefd[0]) == -1)
+		error_display(pipex, "Error closing pipes in parent process.");
 }
 
 void	redirect_child_process(t_pipex *pipex, char **argv)
@@ -37,12 +37,9 @@ void	redirect_child_process(t_pipex *pipex, char **argv)
 	close(pipex->pipefd[0]);
 	if (dup2(fd_in, STDIN_FILENO) == -1 
 		|| dup2(pipex->pipefd[1], STDOUT_FILENO) == -1)
-	{
 		error_display(pipex, "Error: child dup2");
-		return ;
-	}
-	close(fd_in);
-	close(pipex->pipefd[1]);
+	if (close(fd_in) == -1 || close(pipex->pipefd[1]) == -1)
+		error_display(pipex, "Error closing pipes in child process.");
 }
 
 //permission : owner (your program) had read and write permissions (allows the user who created and ran the program to edit the file)

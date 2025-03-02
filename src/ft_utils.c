@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:10:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 10:46:09 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 16:28:35 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,45 @@ void	ft_putstr(char *s)
 	while (*s)
 		write(1, s++, 1);
 }
+
+bool	ft_start_with(char *str, char *start)
+{
+	while (*str && *start)
+	{
+		if (*str != *start)
+			return (false);
+		str++;
+		start++;
+	}
+	if (*start)
+		return (false);
+	return (true);
+}
+
+/*char	*ft_strnstr(char *haystack, char *needle, size_t len)
+{
+	int	i;
+	int	j;
+	
+	if (needle[0] == '\0')
+		return (haystack);
+	i = 0;
+	j = 0;
+	while (haystack[i] && needle[j])
+	{
+		if (haystack[i] == needle[j])
+		{
+			while(haystack[i] == needle[j] && haystack[i] && needle[j] && len--)
+			{
+				i++;
+				j++;
+			}
+		}
+		else
+			i++;
+	}
+	if (needle[j] == '\0')
+		return (needle);
+	else
+		return (NULL);
+}*/

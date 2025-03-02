@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/28 11:28:49 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/02 16:37:34 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 
 
-void	print_double_array(char **s)
+void	print_string_array(char **s)
 {
 	int	i;
 

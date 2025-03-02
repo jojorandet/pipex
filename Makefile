@@ -16,6 +16,7 @@ SRCS			=	main.c \
 					ft_parsing.c \
 					ft_init.c \
 					redirection.c \
+					command_execution.c \
 					ft_error_handling.c 
 
 OBJ				=	$(addprefix $(DIR_BIN)/, $(SRCS:.c=.o))
