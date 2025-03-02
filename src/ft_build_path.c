@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_execution.c                                :+:      :+:    :+:   */
+/*   ft_build_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 11:31:19 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 17:45:54 by jrandet          ###   ########.fr       */
+/*   Created: 2025/03/02 16:41:30 by jrandet           #+#    #+#             */
+/*   Updated: 2025/03/02 17:37:06 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-char	**get_paths(char **env)
+char	*ft_build_path(char *str1, char *str2)
 {
-	char	*line;
+	int		path_len;
+	char	*path;
+	char	*current;
 
-	while (*env && !(ft_start_with(*env, "PATH=")))
-		env++;
-	if (!env)
+	path_len = ft_strlen(str1) + ft_strlen(str2);
+	path = (char *)malloc(sizeof(char) * (path_len + 2));
+	if (!path)
 		return (NULL);
-	line = *env;
-	return (ft_split(line + 5, ':'));
+	path[path_len + 1] = '\0';
+	current = path;
+	while (*str1)
+		*current++ = *str1++;
+	*current++ = '/';
+	while (*str2)
+		*current++ = *str2++;
+	return (path);
 }
-
-void	execute_command(char *command, char **env)
-{
-	char	**paths;
-	(void)command;
-
-	paths = get_paths(env);
-	
-	free(paths);
-}
-

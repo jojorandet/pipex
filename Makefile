@@ -16,6 +16,7 @@ SRCS			=	main.c \
 					ft_parsing.c \
 					ft_init.c \
 					redirection.c \
+					ft_build_path.c \
 					command_execution.c \
 					ft_error_handling.c 
 
