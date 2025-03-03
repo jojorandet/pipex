@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:10:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 18:17:17 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 11:51:52 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,22 @@ bool	ft_start_with(char *str, char *start)
 	return (true);
 }
 
+char	*ft_build_path(char *str1, char *str2)
+{
+	int		path_len;
+	char	*path;
+	char	*current;
+
+	path_len = ft_strlen(str1) + ft_strlen(str2);
+	path = (char *)malloc(sizeof(char) * (path_len + 2));
+	if (!path)
+		return (NULL);
+	path[path_len + 1] = '\0';
+	current = path;
+	while (*str1)
+		*current++ = *str1++;
+	*current++ = '/';
+	while (*str2)
+		*current++ = *str2++;
+	return (path);
+}
