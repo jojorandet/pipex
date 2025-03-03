@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 18:14:26 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:03:05 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	redirect_child_process(t_pipex *pipex, char **argv);
 void	redirect_parent_process(t_pipex *pipex, char **argv);
 
 void	execute_command(char *argv, char **env);
+char	*get_executable_path(char **array_of_paths, char *command);
+char	**get_all_paths(char **env);
+
 
 #endif
