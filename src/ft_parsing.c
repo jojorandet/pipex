@@ -3,35 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:51:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/02/27 16:48:19 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:16:58 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	ft_parsing(int argc, char **argv)
+bool	valid_arg(int argc, char **argv)
 {
 	int	i;
-	int	return_val;
 
 	i = 0;
-	return_val = 1;
 	if (argc != 5)
+		return(false);
+	while (i < argc)
 	{
-		return_val = 0;
-		return (return_val);
-	}
-	while (argv[i])
-	{
-		if (!argv[i] || !ft_strcmp(argv[i], " "))
-		{
-			return_val = 0;
-			break ;
-		}
+		if (!argv[i])
+			return (false);
 		i++;
 	}
-	return (return_val);
+	return (true);
 }

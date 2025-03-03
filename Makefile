@@ -14,16 +14,16 @@ vpath %.c $(DIR_SRC):$(DIR_SRC)/lib
 vpath %.h $(DIR_SRC):$(DIR_SRC)
 
 SRCS 	= 	main.c \
-			ft_string_utils.c \
-			clean_string_array.c \
-			ft_calloc.c \
-			ft_split.c \
-			ft_strndup.c \
+			pipex.c \
+			ft_parsing.c \
 			find_command_path.c \
 			ft_error_handling.c \
-			ft_init.c \
-			ft_parsing.c \
-			redirection.c
+			execute_command.c \
+			ft_string_utils.c \
+			clean_string_array.c \
+			ft_split.c \
+			ft_calloc.c \
+			ft_strndup.c
 					
 
 OBJ				=	$(addprefix $(DIR_BIN)/, $(SRCS:.c=.o))

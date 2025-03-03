@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_string_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:10:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 11:56:43 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:09:40 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,25 @@ bool	ft_start_with(char *str, char *start)
 	if (*start)
 		return (false);
 	return (true);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*duplicate;
+	char	*cursor;
+	int		len;
+
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
+	if (len == 0)
+		return (handle_empty_string());
+	duplicate = (char *)malloc(sizeof(*duplicate) * (len + 1));
+	if (!duplicate)
+		return (NULL);
+	cursor = duplicate;
+	while (*s)
+		*cursor++ = *s++;
+	*cursor = '\0';
+	return (duplicate);
 }

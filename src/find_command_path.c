@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:31:19 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:10:34 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 19:03:24 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,15 @@ static char	*get_executable_path(char **array_of_paths, char *command)
 			clean_array(array_of_paths);
 			return (final_path);
 		}
+		free(final_path);
 		current++;
 	}
 	if (!*array_of_paths)
-	clean_array(array_of_paths);
+		clean_array(array_of_paths);
 	return (NULL);
 }
 
-static char	**get_all_paths(char **env)
+static char	**split_path_command(char **env)
 {
 	char	*line;
 
@@ -70,15 +71,19 @@ static char	**get_all_paths(char **env)
 	return (ft_split(line + 5, ':'));
 }
 
-void	find_command_path(char *command, char **env)
+char	*find_command_path(t_pipex *pipex, char *command)
 {
 	char	**array_of_paths;
 	char	*command_path;
 
-	array_of_paths = get_all_paths(env);
+	array_of_paths = split_path_command(pipex->env);
 	if (!array_of_paths)
-		return ;
+		return (NULL);
 	command_path = get_executable_path(array_of_paths, command);
 	if (!command_path)
-		return ;
+	{
+		clean_array(array_of_paths);
+		pipex_exit(pipex, "Error! Unable to alocate command path array.");
+	}
+	return (command_path);
 }
