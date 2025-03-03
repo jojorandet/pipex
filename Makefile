@@ -2,6 +2,7 @@ NAME = pipex
 
 DIR_BIN		=	./bin
 DIR_SRC		=	./src
+DIR_LIB		=	$(DIR_SRC)/lib
 
 UNAME := $(shell uname)
 CFLAGS = -Wall -Werror -Wextra -g
@@ -9,26 +10,32 @@ ifeq ($(UNAME), Darwin)
 CFLAGS += -fsanitize=address
 endif
 
-SRCS			=	main.c \
-					ft_utils.c \
-					ft_split.c \
-					ft_split_utils.c \
-					ft_parsing.c \
-					ft_init.c \
-					redirection.c \
-					command_execution.c \
-					ft_error_handling.c 
+vpath %.c $(DIR_SRC):$(DIR_SRC)/lib
+vpath %.h $(DIR_SRC):$(DIR_SRC)
+
+SRCS 	= 	main.c \
+			ft_string_utils.c \
+			clean_string_array.c \
+			ft_calloc.c \
+			ft_split.c \
+			ft_strndup.c \
+			find_command_path.c \
+			ft_error_handling.c \
+			ft_init.c \
+			ft_parsing.c \
+			redirection.c
+					
 
 OBJ				=	$(addprefix $(DIR_BIN)/, $(SRCS:.c=.o))
 
-INCLUDE_FLAGS	=	-I$(DIR_SRC)
+INCLUDE_FLAGS	=	-I$(DIR_SRC) -I$(DIR_LIB)
 
 all:	$(NAME)
 
 $(NAME): $(OBJ) | $(DIR_BIN)
 	@$(CC) $(OBJ) $(CFLAGS) -o $@
 
-$(DIR_BIN)/%.o: $(DIR_SRC)/%.c | $(DIR_BIN)
+$(DIR_BIN)/%.o: %.c | $(DIR_BIN)
 	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
 
 $(DIR_BIN):

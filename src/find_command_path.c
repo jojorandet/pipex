@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_execution.c                                :+:      :+:    :+:   */
+/*   find_command_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:31:19 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:03:41 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:10:34 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_build_path(char *str1, char *str2)
+static char	*ft_build_path(char *str1, char *str2)
 {
 	int		path_len;
 	char	*path;
@@ -32,8 +32,7 @@ char	*ft_build_path(char *str1, char *str2)
 	return (path);
 }
 
-
-char	*get_executable_path(char **array_of_paths, char *command)
+static char	*get_executable_path(char **array_of_paths, char *command)
 {
 	char	**current;
 	char	*final_path;
@@ -49,7 +48,6 @@ char	*get_executable_path(char **array_of_paths, char *command)
 		}
 		if (access(final_path, F_OK) == 0)
 		{
-			printf("access entered, final path: %s\n", final_path);
 			clean_array(array_of_paths);
 			return (final_path);
 		}
@@ -60,7 +58,7 @@ char	*get_executable_path(char **array_of_paths, char *command)
 	return (NULL);
 }
 
-char	**get_all_paths(char **env)
+static char	**get_all_paths(char **env)
 {
 	char	*line;
 
@@ -72,7 +70,7 @@ char	**get_all_paths(char **env)
 	return (ft_split(line + 5, ':'));
 }
 
-void	execute_command(char *command, char **env)
+void	find_command_path(char *command, char **env)
 {
 	char	**array_of_paths;
 	char	*command_path;
@@ -83,5 +81,4 @@ void	execute_command(char *command, char **env)
 	command_path = get_executable_path(array_of_paths, command);
 	if (!command_path)
 		return ;
-	printf("%s\n", command_path);
 }

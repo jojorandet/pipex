@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:44:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 18:18:48 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:15:19 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,4 @@ char	*ft_strndup(char *s, size_t n)
 	*cursor = '\0';
 	return (duplicate);
 }
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	char	*result;
-	char	*cursor;
-	size_t	memory_needed;
-
-	memory_needed = count * size;
-
-	result = (char *)malloc(sizeof(char) * memory_needed);
-	if (!result)
-	{
-		printf("alloc failed in ft_calloc\n");
-		return (NULL);
-	}
-	cursor = result;
-	while (memory_needed--)
-		*cursor = 0;
-	return (result);
-}
-
-
 //the goal of memory functions is to allocate all the bytes to 0.

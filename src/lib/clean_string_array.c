@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   string_array_functions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:47:44 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:34:14 by jrandet          ###   ########.fr       */
+/*   Created: 2025/03/03 12:15:49 by jrandet           #+#    #+#             */
+/*   Updated: 2025/03/03 12:16:24 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_pid(char **argv, char **env)
+int	clean_array(char **array)
 {
-	t_pipex	pipex;
+	int	i;
 
-	(void)argv;
-	if (pipe(pipex.pipefd) == -1)
-		error_display(&pipex, "Pipe could not be created\n");
-	pipex.pid = fork();
-	if (pipex.pid == -1)
-		error_display(&pipex, "Child process could not be created\n");
-	if (pipex.pid == 0)
+	i = 0;
+	while (array[i])
 	{
-		//redirect_child_process(&pipex, argv);
-		find_command_path(argv[2], env);
+		free(array[i]);
+		i++;
 	}
-	return ;
+	free(array);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:03:05 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:34:05 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,11 @@ size_t	ft_strlen(char *s);
 char	*ft_strndup(char *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
-char	*ft_build_path(char *str1, char *str2);
 int		clean_array(char **array);
 
 void	redirect_child_process(t_pipex *pipex, char **argv);
 void	redirect_parent_process(t_pipex *pipex, char **argv);
 
-void	execute_command(char *argv, char **env);
-char	*get_executable_path(char **array_of_paths, char *command);
-char	**get_all_paths(char **env);
-
+void	find_command_path(char *command, char **env);
 
 #endif

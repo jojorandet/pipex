@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   memory_functions.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 16:47:44 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:34:14 by jrandet          ###   ########.fr       */
+/*   Created: 2025/03/03 12:14:49 by jrandet           #+#    #+#             */
+/*   Updated: 2025/03/03 12:15:23 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	get_pid(char **argv, char **env)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_pipex	pipex;
+	char	*result;
+	char	*cursor;
+	size_t	memory_needed;
 
-	(void)argv;
-	if (pipe(pipex.pipefd) == -1)
-		error_display(&pipex, "Pipe could not be created\n");
-	pipex.pid = fork();
-	if (pipex.pid == -1)
-		error_display(&pipex, "Child process could not be created\n");
-	if (pipex.pid == 0)
-	{
-		//redirect_child_process(&pipex, argv);
-		find_command_path(argv[2], env);
-	}
-	return ;
+	memory_needed = count * size;
+
+	result = (char *)malloc(sizeof(char) * memory_needed);
+	if (!result)
+		return (NULL);
+	cursor = result;
+	while (memory_needed--)
+		*cursor = 0;
+	return (result);
 }

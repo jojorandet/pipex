@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/02 18:44:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/03 12:16:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,6 @@ static size_t	ft_count_words(char *s, char c)
 			s++;
 	}
 	return (count_words);
-}
-
-int	clean_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-	return (0);
 }
 
 static int	fill_array(char *s, char **array, char c)
@@ -66,7 +52,6 @@ static int	fill_array(char *s, char **array, char c)
 		}
 		s = end;
 	}
-	printf("finished entering fill array\n");
 	array[i] = NULL;
 	return (1);
 }
@@ -80,7 +65,6 @@ char	**ft_split(char *s, char c)
 	if (!s || s[0] == '\0')
 		return (ft_calloc(1, sizeof(char *)));
 	count_words = ft_count_words(s, c);
-	printf("count words %d\n", count_words);
 	split_array = ft_calloc(count_words + 1, sizeof(char *));
 	if (!split_array)
 		return (NULL);
