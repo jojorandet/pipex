@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:31:19 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/08 18:45:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:24:03 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*get_executable_path(char **array_of_paths, char *command)
 {
 	char	**current;
 	char	*final_path;
-	
+
 	current = array_of_paths;
 	while (*current)
 	{
@@ -83,7 +83,7 @@ char	*find_command_path(t_pipex *pipex, char *command)
 	if (!command_path)
 	{
 		clean_array(array_of_paths);
-		pipex_exit(pipex, "Error! Unable to alocate command path array.");
+		pipex_exit(pipex, "Error! Unable to alocate command path array.\n");
 	}
 	return (command_path);
 }

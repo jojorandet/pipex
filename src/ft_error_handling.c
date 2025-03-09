@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:55:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 11:27:52 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:16:54 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,36 @@ static void	free_command_struct(t_command *cmd)
 
 static void	free_commands(t_command *cmds)
 {
-	while (cmds->args != NULL)
+	int	i;
+
+	i = 0;
+	while (i < cmds->pipex->cmd_count)
 	{
-		free_command_struct(cmds);
-		cmds++;
+		free_command_struct(&cmds[i]);
+		i++;
 	}
 }
 
 void	pipex_exit(t_pipex *pipex, char *error_msg)
 {
-	free_commands(pipex->cmds);
-	free(pipex->cmds);
-	pipex->cmds = NULL;
-	free(pipex->pipes);
-	pipex->pipes = NULL;
-	close(pipex->fd_in);
-	close(pipex->fd_out);
+	if (pipex->cmds)
+	{
+		free_commands(pipex->cmds);
+		free(pipex->cmds);
+		pipex->cmds = NULL;
+	}
+	if (pipex->pipes)
+	{
+		free(pipex->pipes);
+		pipex->pipes = NULL;
+	}
+	if (pipex->fd_in != -1)
+		close(pipex->fd_in);
+	if (pipex->fd_out != -1)
+		close(pipex->fd_out);
 	if (error_msg)
 	{
-		ft_putstr(error_msg);
+		ft_puterr(error_msg);
 		exit(EXIT_FAILURE);
 	}
 	exit(EXIT_SUCCESS);

@@ -1,3 +1,0 @@
-Line with spaces
-Line with * wildcard
-Line with | pipe symbol

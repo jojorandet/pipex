@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_utils.c                                   :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:44:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:15:19 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 18:43:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*handle_empty_string(void)
 {
 	char	*duplicate;
-	
+
 	duplicate = (char *)malloc(sizeof(*duplicate) * 1);
 	if (!duplicate)
 		return (NULL);
@@ -43,4 +43,3 @@ char	*ft_strndup(char *s, size_t n)
 	*cursor = '\0';
 	return (duplicate);
 }
-//the goal of memory functions is to allocate all the bytes to 0.

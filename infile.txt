@@ -1,4 +1,7 @@
-Hello world
-This is a test file
-Contains multiple lines
-Hello again
+hello world
+this is a test file
+hello there
+some random text
+hello again
+this line doesn't contain the keyword
+the last line with hello
