@@ -15,7 +15,6 @@ vpath %.h $(DIR_SRC):$(DIR_SRC)
 
 SRCS 	= 	main.c \
 			pipex.c \
-			ft_parsing.c \
 			find_command_path.c \
 			ft_error_handling.c \
 			execute_command.c \

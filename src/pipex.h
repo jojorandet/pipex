@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 18:57:33 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 11:25:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,36 @@
 
 typedef struct s_pipex	t_pipex;
 
+typedef	union	u_pipe
+{
+	int			fildes[2];
+	struct {
+		int		read;
+		int		write;
+	};
+}				t_pipe;
+
 typedef	struct	s_command
 {
-	char	*path;
 	char	**args;
 	t_pipex	*pipex;
 	pid_t	pid;
 	int		status;
+	t_pipe	*pipe_out;
+	t_pipe *pipe_in;
 }				t_command;
 
-struct s_pipex
+typedef struct	s_pipex
 {
 	int			fd_in;
 	int			fd_out;
-	int			pipefd[2];
 	char		**env;
-	t_command	cmd1;
-	t_command	cmd2;
-};
+	t_command	*cmds;
+	t_pipe		*pipes;
+}				t_pipex;
 
-int		main(int argc, char **argv, char **env);
 bool	valid_arg(int argc, char **argv);
-void	pipex(char **argv, char **env);
+
 
 char	**ft_split(char *s, char c);
 void	print_string_array(char **s);
@@ -60,7 +68,7 @@ void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
 int		clean_array(char **array);
 
-void	execute_command(t_command *cmd, int	fd_in, int fd_out, int fd_to_close);
+void	execute_pipe(t_pipex *pipex);
 char	*find_command_path(t_pipex *pipex, char *command);
 
 void	pipex_exit(t_pipex *pipex, char *error_msg);

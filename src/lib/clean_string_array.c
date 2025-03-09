@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   string_array_functions.c                           :+:      :+:    :+:   */
+/*   clean_string_array.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:15:49 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/03 12:16:24 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 11:13:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	clean_array(char **array)
 	int	i;
 
 	i = 0;
+	if (!array)
+		return (0);
 	while (array[i])
 	{
 		free(array[i]);
