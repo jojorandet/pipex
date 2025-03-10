@@ -16,7 +16,6 @@ vpath %.h $(DIR_SRC):$(DIR_SRC)
 SRCS 	= 	main.c \
 			struct_init.c \
 			handle_heredoc.c \
-			here_doc_init.c \
 			init_pipex.c \
 			find_command_path.c \
 			ft_error_handling.c \

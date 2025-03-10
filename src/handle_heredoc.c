@@ -3,38 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:40:23 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 18:40:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 21:16:05 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	find_next_line_pos(char *buffer, char c)
-{
-	int	pos;
-	
-	if (!buffer)
-		return (0);
-	pos = 0;
-	while (*buffer)
-	{
-		if (*buffer == c)
-			return (pos);
-		pos++;
-		buffer++;
-	}
-	return (-1);
-}
 
-static char *get_line_from_stdin(char **line)
-{
-	
-}
-
-static void    get_line_into_pipe(t_pipex *pipex)
+/*static void	get_line_into_pipe(t_pipex *pipex)
 {
 	char		*line;
 	static char	*remainder = NULL;
@@ -43,12 +22,13 @@ static void    get_line_into_pipe(t_pipex *pipex)
 	close(pipex->pipes->read);
 	while (1)
 	{
-		line = get_line_from_stdin(&line);
+		//line = get_line_from_stdin(&line); // what do i get in return? i get a line with a new line at the end 
 		if (!line)
 			break ;
-		// if i find the new line at the end of the line, i need to append it to \0 to 
-		
-		if (ft_strcmp(line, pipex->delimiter) == 0)
+		while (*line != '\n')
+			line++;
+		*line = '\0';
+		if (ft_strcmp(line, pipex->delimiter) == 0) // i need to compare to something so i need to have a null terminator 
 		{
 			free(line);
 			break ;
@@ -56,9 +36,9 @@ static void    get_line_into_pipe(t_pipex *pipex)
 		write(pipex->pipes->write, line, ft_strlen(line));
 		write(pipex->pipes->write, "\n", 1);
 	}
-}
+}*/
 
-void    here_doc_handler(t_pipex *pipex)
+void	handle_heredoc(t_pipex *pipex)
 {
 	int pid;
 	
@@ -71,7 +51,7 @@ void    here_doc_handler(t_pipex *pipex)
 	}
 	if (pid == 0)
 	{
-		get_line_into_pipe(pipex);
+		//get_line_into_pipe(pipex);
 	}
 	if (pid != 0)
 	{
@@ -79,5 +59,4 @@ void    here_doc_handler(t_pipex *pipex)
 		pipex->fd_in = pipex->pipes->read;
 		wait(NULL);
 	}
-	
 }

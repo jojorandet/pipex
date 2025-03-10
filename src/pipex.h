@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 16:19:56 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 21:14:28 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_pipex
 	char		*delimiter;
 }				t_pipex;
 
-void	struct_init(int argc, t_pipex *pipex, char **env);
 char	**ft_split(char *s, char c);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_puterr(char *s);
@@ -68,13 +67,15 @@ void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
 void	clean_array(char **array);
 
-
+void	struct_init(t_pipex *pipex, char **env);
+void	handle_heredoc(t_pipex *pipex);
 void	init_files(t_pipex *pipex, int argc, char **argv);
 void	init_command_chain(t_pipex *pipex, int argc, char **argv);
-void	init_files(t_pipex *pipex, int argc, char **argv);
 
 void	execute_pipe(t_pipex *pipex);
 char	*find_command_path(t_pipex *pipex, char *command);
+
+void	handle_heredoc(t_pipex *pipex);
 
 void	wait_for_children(t_pipex *pipex);
 void	pipex_exit(t_pipex *pipex, char *error_msg);
