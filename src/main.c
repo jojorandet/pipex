@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 19:30:43 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 21:58:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	main(int argc, char **argv, char **env)
 		return (pipex_exit(&pipex, "Malloc error!\n"), 1);
 	init_command_chain(&pipex, argc, argv);
 	execute_pipe(&pipex);
+	wait_for_children(&pipex);
 	pipex_exit(&pipex, NULL);
 	return (0);
 }

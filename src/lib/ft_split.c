@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/08 18:45:55 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 19:41:41 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_count_words(char *s, char c)
 	return (count_words);
 }
 
-static int	fill_array(char *s, char **array, char c)
+static char	**fill_array(char *s, char **array, char c)
 {
 	char	*end;
 	char	*sdup_str;
@@ -47,13 +47,16 @@ static int	fill_array(char *s, char **array, char c)
 		{
 			sdup_str = ft_strndup(s, end - s);
 			if (!sdup_str)
-				return (clean_array(array));
+			{
+				clean_array(array);
+				return (NULL);
+			}
 			array[i++] = sdup_str;
 		}
 		s = end;
 	}
 	array[i] = NULL;
-	return (1);
+	return (array);
 }
 
 char	**ft_split(char *s, char c)
@@ -68,9 +71,7 @@ char	**ft_split(char *s, char c)
 	split_array = ft_calloc(count_words + 1, sizeof(char *));
 	if (!split_array)
 		return (NULL);
-	if (!fill_array(s, split_array, c))
-		return (NULL);
-	return (split_array);
+	return (fill_array(s, split_array, c));
 }
 
 //need to return the empty string

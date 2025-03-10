@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 19:26:48 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/09 21:57:55 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ char	*ft_strdup(char *s);
 char	*handle_empty_string(void);
 void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
-int		clean_array(char **array);
+void	clean_array(char **array);
 
 void	execute_pipe(t_pipex *pipex);
 char	*find_command_path(t_pipex *pipex, char *command);
 
+void	wait_for_children(t_pipex *pipex);
 void	pipex_exit(t_pipex *pipex, char *error_msg);
 
 #endif
