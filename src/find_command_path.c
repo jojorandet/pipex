@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_command_path.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:31:19 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 21:06:03 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 11:53:00 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ char	*find_command_path(t_pipex *pipex, char *command)
 		return (NULL);
 	command_path = find_and_free_paths(array_of_paths, command);
 	if (!command_path)
-		pipex_exit(pipex, "Error: Command not found or empty command provided.\n");
+		pipex_exit(pipex, "Error: Command not found or empty command.\n");
 	return (command_path);
 }
