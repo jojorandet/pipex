@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 10:55:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:19:56 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <stdbool.h>
+# define BUFFER_SIZE 100
 
 typedef struct s_pipex	t_pipex;
 
@@ -39,9 +40,8 @@ typedef struct s_command
 	char	**args;
 	t_pipex	*pipex;
 	pid_t	pid;
-	int		status;
-	t_pipe	*pipe_out;
 	t_pipe	*pipe_in;
+	t_pipe	*pipe_out;
 }			t_command;
 
 typedef struct s_pipex
@@ -52,6 +52,8 @@ typedef struct s_pipex
 	t_command	*cmds;
 	t_pipe		*pipes;
 	int			cmd_count;
+	int			is_heredoc;
+	char		*delimiter;
 }				t_pipex;
 
 void	struct_init(int argc, t_pipex *pipex, char **env);
@@ -65,6 +67,11 @@ char	*handle_empty_string(void);
 void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
 void	clean_array(char **array);
+
+
+void	init_files(t_pipex *pipex, int argc, char **argv);
+void	init_command_chain(t_pipex *pipex, int argc, char **argv);
+void	init_files(t_pipex *pipex, int argc, char **argv);
 
 void	execute_pipe(t_pipex *pipex);
 char	*find_command_path(t_pipex *pipex, char *command);

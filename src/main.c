@@ -6,48 +6,12 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 10:53:45 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:01:49 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "pipex.h"
-
-static void	split_command_string(t_pipex *pipex, t_command *cmd, char *str)
-{
-	cmd->args = ft_split(str, ' ');
-	if (!cmd->args)
-		pipex_exit(pipex, "Error: args could not be built!\n");
-	cmd->pipex = pipex;
-}
-
-static void	init_command_chain(t_pipex *pipex, int argc, char **argv)
-{
-	int			i;
-	t_command	*cmd;
-
-	i = 2;
-	cmd = pipex->cmds;
-	while (i < argc - 1)
-	{
-		split_command_string(pipex, cmd, argv[i]);
-		cmd++;
-		i++;
-	}
-}
-
-static void	init_files(t_pipex *pipex, int argc, char **argv)
-{
-	pipex->fd_in = open(argv[1], O_RDONLY);
-	if (pipex->fd_in == -1)
-		pipex_exit(pipex, "Error: Cannot access input file!\n");
-	pipex->fd_out = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (pipex->fd_out == -1)
-	{
-		close(pipex->fd_in);
-		pipex_exit(pipex, "Error: Cannot access output file!\n");
-	}
-}
 
 static bool	valid_arg(int argc, char **argv)
 {
@@ -71,10 +35,26 @@ int	main(int argc, char **argv, char **env)
 
 	if (!valid_arg(argc, argv))
 	{
-		write(2, "Invalid input! filein cmd1 | cmd2 fileout\n", 43);
+		write(2, "Invalid input! filein cmd1 cmd2 fileout\n", 41);
 		exit(EXIT_FAILURE);
 	}
 	struct_init(argc, &pipex, env);
+	if (ft_strcmp(argv[1],"here_doc") == 0)
+	{
+		if (argc < 6)
+		{
+			write(1, "Invalid synthax for here_doc: here_doc DELIMITER cmd1 cmd2 outfile\n", 68);
+			exit(EXIT_FAILURE);
+		}
+		pipex.is_heredoc = 1;
+		handle_heredoc(argc, argv, env);
+		pipex.cmd_count = argc - 4;
+	}
+	else
+	{
+		pipex.is_heredoc = 0;
+		pipex.cmd_count = argc - 3;
+	}
 	init_files(&pipex, argc, argv);
 	pipex.cmds = ft_calloc((argc - 2), sizeof(*(pipex.cmds)));
 	if (!pipex.cmds)

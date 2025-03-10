@@ -1,3 +1,3 @@
 make re
-VALGRIND="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=leaks.log --track-fds=yes --trace-children=yes"
-$VALGRIND  ./pipex test_perms.txt output.txt
+VALGRIND="valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --trace-children=yes"
+$VALGRIND  ./pipex infile.txt "echo salut" "wc -l" outfile.txt

@@ -15,6 +15,9 @@ vpath %.h $(DIR_SRC):$(DIR_SRC)
 
 SRCS 	= 	main.c \
 			struct_init.c \
+			handle_heredoc.c \
+			here_doc_init.c \
+			init_pipex.c \
 			find_command_path.c \
 			ft_error_handling.c \
 			execute_command.c \
@@ -24,7 +27,6 @@ SRCS 	= 	main.c \
 			ft_calloc.c \
 			ft_strndup.c
 					
-
 OBJ				=	$(addprefix $(DIR_BIN)/, $(SRCS:.c=.o))
 
 INCLUDE_FLAGS	=	-I$(DIR_SRC) -I$(DIR_LIB)

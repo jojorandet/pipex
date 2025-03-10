@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ft_INIT.C": "cpp"
+        "ft_INIT.C": "cpp",
+        "pipex.h": "c"
     }
 }
