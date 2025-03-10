@@ -14,6 +14,7 @@ vpath %.c $(DIR_SRC):$(DIR_SRC)/lib
 vpath %.h $(DIR_SRC):$(DIR_SRC)
 
 SRCS 	= 	main.c \
+			struct_init.c \
 			find_command_path.c \
 			ft_error_handling.c \
 			execute_command.c \

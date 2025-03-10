@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 21:58:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:53:45 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,7 @@ int	main(int argc, char **argv, char **env)
 		write(2, "Invalid input! filein cmd1 | cmd2 fileout\n", 43);
 		exit(EXIT_FAILURE);
 	}
-	pipex.env = env;
-	pipex.fd_in = -1;
-	pipex.fd_out = -1;
-	pipex.cmd_count = (argc - 3);
-	pipex.cmds = NULL;
-	pipex.pipes = NULL;
+	struct_init(argc, &pipex, env);
 	init_files(&pipex, argc, argv);
 	pipex.cmds = ft_calloc((argc - 2), sizeof(*(pipex.cmds)));
 	if (!pipex.cmds)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 21:57:55 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:55:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_pipex
 	int			cmd_count;
 }				t_pipex;
 
+void	struct_init(int argc, t_pipex *pipex, char **env);
 char	**ft_split(char *s, char c);
 int		ft_strcmp(char *s1, char *s2);
 void	ft_puterr(char *s);

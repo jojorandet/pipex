@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:55:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 21:56:12 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 10:47:43 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void	wait_for_children(t_pipex *pipex)
 	while (i < pipex->cmd_count)
 	{
 		if(pipex->cmds[i].pid > 0)
-			waitpid(pipex->cmds[i].pid, &status, 0);
+			waitpid(pipex->cmds[i++].pid, &status, 0);
 	}
 }
