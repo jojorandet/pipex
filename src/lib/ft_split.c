@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 18:19:58 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 10:50:31 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 11:50:05 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,24 @@ static size_t	ft_count_words(char *s, char c)
 	return (count_words);
 }
 
+static int	fill_with_duplicates(char ***ptr_to_array, char *s, char *end, size_t *ptr_to_i)
+{
+	char	*sdup_str;
+
+	sdup_str = ft_strndup(s, end - s);
+	if (!sdup_str)
+	{
+		clean_array(*ptr_to_array);
+		return (0);
+	}
+	(*ptr_to_array)[*(ptr_to_i)] = sdup_str;
+	(*ptr_to_i)++;
+	return (1);
+}
+
 static char	**fill_array(char *s, char **array, char c)
 {
 	char	*end;
-	char	*sdup_str;
 	size_t	i;
 
 	i = 0;
@@ -45,13 +59,8 @@ static char	**fill_array(char *s, char **array, char c)
 			end++;
 		if (s != end)
 		{
-			sdup_str = ft_strndup(s, end - s);
-			if (!sdup_str)
-			{
-				clean_array(array);
+			if (!fill_with_duplicates(&array, s, end, &i))
 				return (NULL);
-			}
-			array[i++] = sdup_str;
 		}
 		s = end;
 	}
