@@ -6,14 +6,13 @@
 /*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:40:23 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 21:16:05 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/10 22:29:01 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
-/*static void	get_line_into_pipe(t_pipex *pipex)
+static void	get_line_into_pipe(t_pipex *pipex)
 {
 	char		*line;
 	static char	*remainder = NULL;
@@ -22,7 +21,7 @@
 	close(pipex->pipes->read);
 	while (1)
 	{
-		//line = get_line_from_stdin(&line); // what do i get in return? i get a line with a new line at the end 
+		line = get_line_from_stdin(); // what do i get in return? i get a line with a new line at the end 
 		if (!line)
 			break ;
 		while (*line != '\n')
@@ -35,8 +34,10 @@
 		}
 		write(pipex->pipes->write, line, ft_strlen(line));
 		write(pipex->pipes->write, "\n", 1);
+		free(line);
 	}
-}*/
+	close(pipex->pipes->write);
+}
 
 void	handle_heredoc(t_pipex *pipex)
 {
@@ -51,7 +52,7 @@ void	handle_heredoc(t_pipex *pipex)
 	}
 	if (pid == 0)
 	{
-		//get_line_into_pipe(pipex);
+		get_line_into_pipe(pipex);
 	}
 	if (pid != 0)
 	{
