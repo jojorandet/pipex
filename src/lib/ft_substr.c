@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 12:14:49 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 15:34:47 by jrandet          ###   ########.fr       */
+/*   Created: 2025/03/11 14:25:08 by jrandet           #+#    #+#             */
+/*   Updated: 2025/03/11 15:34:50 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*result;
-	char	*cursor;
-	size_t	memory_needed;
+	char	*substr;
+	size_t	strlen;
 
-	memory_needed = count * size;
-	result = (char *)malloc(sizeof(char) * memory_needed);
-	if (!result)
+	if (!s)
 		return (NULL);
-	cursor = result;
-	while (memory_needed--)
-		*(cursor++) = 0;
-	return (result);
+	strlen = ft_strlen(s);
+	if (start >= strlen)
+		return (ft_calloc(1, 1));
+	if (len > strlen - start)
+		len = strlen - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr)
+		return (NULL);
+	s += start;
+	ft_strlcpy(substr, s, len + 1);
+	return (substr);
 }

@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 21:58:14 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 15:44:53 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "pipex.h"
 
 static void	get_cmd_count(int argc, char **argv, t_pipex *pipex)
@@ -23,7 +22,7 @@ static void	get_cmd_count(int argc, char **argv, t_pipex *pipex)
 			exit(EXIT_FAILURE);
 		}
 		pipex->is_heredoc = 1;
-		//handle_heredoc(pipex);
+		handle_heredoc(pipex);
 		pipex->cmd_count = argc - 4;
 	}
 	else
@@ -68,7 +67,7 @@ int	main(int argc, char **argv, char **env)
 		write(2, "Invalid input! filein cmd1 cmd2 fileout\n", 41);
 		exit(EXIT_FAILURE);
 	}
-	struct_init(&pipex, env); //initialise the struct but not command count
+	struct_init(&pipex, env);
 	get_cmd_count(argc, argv, &pipex);
 	init_files(&pipex, argc, argv);
 	create_arrays(argc, &pipex);
@@ -76,5 +75,4 @@ int	main(int argc, char **argv, char **env)
 	execute_pipe(&pipex);
 	wait_for_children(&pipex);
 	pipex_exit(&pipex, NULL);
-	return (0);
 }

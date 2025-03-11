@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_string_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:10:18 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 19:17:07 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 15:39:47 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -79,4 +79,14 @@ char	*ft_strdup(char *s)
 		*cursor++ = *s++;
 	*cursor = '\0';
 	return (duplicate);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && (*s != (char)c))
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	else
+		return (NULL);
 }

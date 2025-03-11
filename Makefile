@@ -19,12 +19,15 @@ SRCS 	= 	main.c \
 			init_pipex.c \
 			find_command_path.c \
 			ft_error_handling.c \
+			get_next_line.c \
 			execute_command.c \
 			ft_string_utils.c \
 			clean_string_array.c \
 			ft_split.c \
 			ft_calloc.c \
-			ft_strndup.c
+			ft_strndup.c \
+			ft_strjoin.c \
+			ft_substr.c
 					
 OBJ				=	$(addprefix $(DIR_BIN)/, $(SRCS:.c=.o))
 

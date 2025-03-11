@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:40:23 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 10:35:49 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 15:32:13 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void	get_line_into_pipe(t_pipex *pipex)
 	close(pipex->pipes->read);
 	while (1)
 	{
-		line = get_line_from_stdin(); // what do i get in return? i get a line with a new line at the end 
+		line = get_line_from_stdin();
 		if (!line)
 			break ;
 		i = 0;
 		while (line[i] && line[i] != '\n')
 			i++;
 		line[i] = '\0';
-		if (ft_strcmp(line, pipex->delimiter) == 0) // i need to compare to something so i need to have a null terminator 
+		if (ft_strcmp(line, pipex->delimiter) == 0)
 		{
 			free(line);
 			break ;
@@ -51,9 +51,7 @@ void	handle_heredoc(t_pipex *pipex)
 		return ;
 	}
 	if (pid == 0)
-	{
 		get_line_into_pipe(pipex);
-	}
 	if (pid != 0)
 	{
 		close(pipex->pipes->write);
