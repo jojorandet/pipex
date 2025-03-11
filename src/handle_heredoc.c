@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:40:23 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 22:29:01 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 10:35:49 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static void	get_line_into_pipe(t_pipex *pipex)
 {
 	char		*line;
-	static char	*remainder = NULL;
-	char		*new_line;
+	int			i;
 
 	close(pipex->pipes->read);
 	while (1)
@@ -24,9 +23,10 @@ static void	get_line_into_pipe(t_pipex *pipex)
 		line = get_line_from_stdin(); // what do i get in return? i get a line with a new line at the end 
 		if (!line)
 			break ;
-		while (*line != '\n')
-			line++;
-		*line = '\0';
+		i = 0;
+		while (line[i] && line[i] != '\n')
+			i++;
+		line[i] = '\0';
 		if (ft_strcmp(line, pipex->delimiter) == 0) // i need to compare to something so i need to have a null terminator 
 		{
 			free(line);

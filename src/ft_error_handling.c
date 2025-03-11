@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:55:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 13:59:25 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 09:50:02 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,5 @@ void	wait_for_children(t_pipex *pipex)
 
 	i = 0;
 	while (i < pipex->cmd_count)
-	{
-		//if (pipex->cmds[i].pid > 0)
 		waitpid(pipex->cmds[i++].pid, &status, 0);
-	}
 }

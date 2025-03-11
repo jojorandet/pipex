@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/10 21:14:28 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 10:25:37 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_puterr(char *s);
 size_t	ft_strlen(char *s);
 char	*ft_strndup(char *s, size_t n);
 char	*ft_strdup(char *s);
+char	*ft_strchr(const char *s, int c);
 char	*handle_empty_string(void);
 void	*ft_calloc(size_t count, size_t size);
 bool	ft_start_with(char *str, char *start);
