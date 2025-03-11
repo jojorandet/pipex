@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:52:51 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:34 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:48:12 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,7 @@ char	*read_from_stdin(char *stash)
 
 	while(1)
 	{
-		printf("1\n");
-		count_bytes = read(STDERR_FILENO, buffer, BUFFER_SIZE);
+		count_bytes = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 		if (count_bytes < 0)
 			return (free_stash_and_return(&stash));
 		if (count_bytes == 0)

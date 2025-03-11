@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrandet <jrandet@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:35:08 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/09 18:40:33 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 17:16:40 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static void	close_fd(t_command *cmd, int fd)
 static void	dup_fd(t_command *cmd, int fd, int fd2)
 {
 	if (dup2(fd, fd2) == -1)
+	{
+		printf("failed\n");
 		pipex_exit(cmd->pipex, "Dup2 failed\n");
+	}
 	close_fd(cmd, fd);
 }
 
@@ -29,10 +32,13 @@ static void	connect_pipe(t_command *cmd)
 {
 	if (!cmd->pipe_in)
 	{
+		if (cmd->pipex->fd_in < 0)
+        	pipex_exit(cmd->pipex, "Invalid input file descriptor\n");
 		dup_fd(cmd, cmd->pipex->fd_in, STDIN_FILENO);
 	}
 	else
 	{
+		printf("Process %d: fd_in=%d, pipes[0].read=%d, pipes[0].write=%d\n", getpid(), cmd->pipex->fd_in, cmd->pipex->pipes[0].read, cmd->pipex->pipes[0].write);
 		close_fd(cmd, cmd->pipex->fd_in);
 		close_fd(cmd, cmd->pipe_in->write);
 		dup_fd(cmd, cmd->pipe_in->read, STDIN_FILENO);
@@ -85,7 +91,8 @@ void	execute_pipe(t_pipex *pipex)
 	while (pipex->cmds[i + 1].args != NULL)
 	{
 		p = pipex->pipes + i;
-		pipe(p->fildes);
+		if (pipe(p->fildes) == -1)
+			pipex_exit(pipex, "pipe failed\n");
 		pipex->cmds[i].pipe_out = p;
 		pipex->cmds[i + 1].pipe_in = p;
 		execute_command(pipex->cmds + i);

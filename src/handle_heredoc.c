@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:40:23 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 15:32:13 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:43:22 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	get_line_into_pipe(t_pipex *pipex)
 	char		*line;
 	int			i;
 
+	
 	close(pipex->pipes->read);
 	while (1)
 	{
@@ -42,7 +43,7 @@ static void	get_line_into_pipe(t_pipex *pipex)
 void	handle_heredoc(t_pipex *pipex)
 {
 	int pid;
-	
+
 	pipe(pipex->pipes->fildes);
 	pid = fork();
 	if (pid == -1)
