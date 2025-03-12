@@ -1,0 +1,38 @@
+==1210626== Memcheck, a memory error detector
+==1210626== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1210626== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1210626== Command: ./pipex infile.txt cat grep\ o rev rev outfile.txt
+==1210626== Parent PID: 1207444
+==1210626== 
+==1210626== 
+==1210626== FILE DESCRIPTORS: 7 open (3 std) at exit.
+==1210626== Open file descriptor 103: /usr/share/code/v8_context_snapshot.bin
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open AF_UNIX socket 43: <unknown>
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open file descriptor 42: /home/jrandet/.config/Code/logs/20250312T093224/ptyhost.log
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open file descriptor 3: /home/jrandet/Documents/42/cercle_2/pipex/valgrind.log
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open file descriptor 2: /dev/pts/0
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open file descriptor 1: /dev/pts/0
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== Open file descriptor 0: /dev/pts/0
+==1210626==    <inherited from parent>
+==1210626== 
+==1210626== 
+==1210626== HEAP SUMMARY:
+==1210626==     in use at exit: 0 bytes in 0 blocks
+==1210626==   total heap usage: 11 allocs, 11 frees, 325 bytes allocated
+==1210626== 
+==1210626== All heap blocks were freed -- no leaks are possible
+==1210626== 
+==1210626== For lists of detected and suppressed errors, rerun with: -s
+==1210626== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
