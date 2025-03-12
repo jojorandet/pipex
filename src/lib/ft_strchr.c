@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/11 14:25:08 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/12 15:23:33 by jrandet          ###   ########.fr       */
+/*   Created: 2025/03/12 15:20:59 by jrandet           #+#    #+#             */
+/*   Updated: 2025/03/12 15:21:20 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*substr;
-	size_t	strlen;
-
-	if (!s)
+	while (*s && (*s != (char)c))
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	else
 		return (NULL);
-	strlen = ft_strlen(s);
-	if (start >= strlen)
-		return (ft_calloc(1, 1));
-	if (len > strlen - start)
-		len = strlen - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!substr)
-		return (NULL);
-	s += start;
-	ft_strlcpy(substr, s, len + 1);
-	return (substr);
 }

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:55:16 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 09:50:02 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 14:31:34 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	free_command_struct(t_command *cmd)
 	}
 }
 
-static void	free_commands(t_command *cmds)
+static void	free_commands(t_pipex *pipex)
 {
 	int	i;
 
 	i = 0;
-	while (i < cmds->pipex->cmd_count)
+	while (i < pipex->cmd_count)
 	{
-		free_command_struct(&cmds[i]);
+		free_command_struct(&pipex->cmds[i]);
 		i++;
 	}
 }
@@ -37,7 +37,7 @@ void	pipex_exit(t_pipex *pipex, char *error_msg)
 {
 	if (pipex->cmds)
 	{
-		free_commands(pipex->cmds);
+		free_commands(pipex);
 		free(pipex->cmds);
 		pipex->cmds = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:58:30 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 16:43:21 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:28:27 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_files(t_pipex *pipex, int argc, char **argv)
 {
 	if (!pipex->is_heredoc)
 	{
-		pipex->fd_in = open(argv[1], O_RDONLY);
+		pipex->fd_in = open(argv[1], O_CREAT | O_RDONLY, 0644);
 		if (pipex->fd_in == -1)
 			pipex_exit(pipex, "Error: Cannot access input file!\n");
 	}

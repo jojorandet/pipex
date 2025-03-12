@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:59 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 16:45:27 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:12:42 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	create_arrays(t_pipex *pipex)
 	if (!pipex->pipes)
 		(pipex_exit(pipex, "Malloc error!\n"));
 }
-
 
 static bool	valid_arg(int argc, char **argv)
 {
@@ -41,7 +40,7 @@ static bool	valid_arg(int argc, char **argv)
 
 void	assign_heredoc_flag(t_pipex *pipex, int argc, char **argv)
 {
-	if (ft_strcmp(argv[1],"here_doc") == 0)
+	if (ft_strcmp(argv[1], "here_doc") == 0)
 	{
 		if (argc < 6)
 		{
@@ -50,7 +49,7 @@ void	assign_heredoc_flag(t_pipex *pipex, int argc, char **argv)
 		}
 		pipex->is_heredoc = 1;
 	}
-	else 
+	else
 	{
 		pipex->is_heredoc = 0;
 	}
@@ -74,7 +73,6 @@ int	main(int argc, char **argv, char **env)
 	}
 	else
 		pipex.cmd_count = argc - 3;
-	
 	create_arrays(&pipex);
 	init_files(&pipex, argc, argv);
 	if (pipex.is_heredoc)

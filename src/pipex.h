@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 16:19:35 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 15:33:33 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:13:14 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,19 @@ bool	ft_start_with(char *str, char *start);
 void	clean_array(char **array);
 
 void	struct_init(t_pipex *pipex, char **env);
-void	handle_heredoc(t_pipex *pipex);
 void	init_files(t_pipex *pipex, int argc, char **argv);
 void	init_command_chain(t_pipex *pipex, int argc, char **argv);
+
+void	set_up_command_input(t_command *cmd);
+void	set_up_command_output(t_command *cmd);
+void	dup_fd(t_command *cmd, int fd, int fd2);
+void	close_fd(t_command *cmd, int fd);
 
 void	execute_pipe(t_pipex *pipex);
 char	*find_command_path(t_pipex *pipex, char *command);
 
 void	handle_heredoc(t_pipex *pipex);
-char	*get_line_from_stdin();
+char	*get_line_from_stdin(void);
 
 void	wait_for_children(t_pipex *pipex);
 void	pipex_exit(t_pipex *pipex, char *error_msg);

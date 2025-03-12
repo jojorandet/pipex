@@ -6,53 +6,16 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:35:08 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 17:16:40 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:11:11 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	close_fd(t_command *cmd, int fd)
-{
-	if (close(fd) == -1)
-		pipex_exit(cmd->pipex, "fd not closed");
-}
-
-static void	dup_fd(t_command *cmd, int fd, int fd2)
-{
-	if (dup2(fd, fd2) == -1)
-	{
-		printf("failed\n");
-		pipex_exit(cmd->pipex, "Dup2 failed\n");
-	}
-	close_fd(cmd, fd);
-}
-
 static void	connect_pipe(t_command *cmd)
 {
-	if (!cmd->pipe_in)
-	{
-		if (cmd->pipex->fd_in < 0)
-        	pipex_exit(cmd->pipex, "Invalid input file descriptor\n");
-		dup_fd(cmd, cmd->pipex->fd_in, STDIN_FILENO);
-	}
-	else
-	{
-		printf("Process %d: fd_in=%d, pipes[0].read=%d, pipes[0].write=%d\n", getpid(), cmd->pipex->fd_in, cmd->pipex->pipes[0].read, cmd->pipex->pipes[0].write);
-		close_fd(cmd, cmd->pipex->fd_in);
-		close_fd(cmd, cmd->pipe_in->write);
-		dup_fd(cmd, cmd->pipe_in->read, STDIN_FILENO);
-	}
-	if (!cmd->pipe_out)
-	{
-		dup_fd(cmd, cmd->pipex->fd_out, STDOUT_FILENO);
-	}
-	else
-	{
-		close_fd(cmd, cmd->pipex->fd_out);
-		close_fd(cmd, cmd->pipe_out->read);
-		dup_fd(cmd, cmd->pipe_out->write, STDOUT_FILENO);
-	}
+	set_up_command_input(cmd);
+	set_up_command_output(cmd);
 }
 
 static void	execute_command(t_command *cmd)

@@ -6,7 +6,7 @@
 /*   By: jrandet <jrandet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:52:51 by jrandet           #+#    #+#             */
-/*   Updated: 2025/03/11 16:48:12 by jrandet          ###   ########.fr       */
+/*   Updated: 2025/03/12 15:19:54 by jrandet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ char	*free_stash_and_return(char **stash)
 char	*update_stash(char	**old_stash)
 {
 	char	*new_stash;
-	int	i;
+	char	*line;
+	int		i;
 
 	i = 0;
 	while ((*old_stash)[i] && (*old_stash)[i] != '\n')
 		i++;
 	if ((*old_stash)[i] == '\0')
 	{
-		char *line = ft_strdup((*old_stash));
+		line = ft_strdup((*old_stash));
 		if (!line)
 			return (NULL);
 		free(*old_stash);
@@ -68,7 +69,7 @@ char	*read_from_stdin(char *stash)
 	int			count_bytes;
 	char		*temp;
 
-	while(1)
+	while (1)
 	{
 		count_bytes = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 		if (count_bytes < 0)
@@ -78,20 +79,20 @@ char	*read_from_stdin(char *stash)
 		buffer[count_bytes] = '\0';
 		temp = ft_strjoin(stash, buffer);
 		if (!temp)
-			return(free_stash_and_return(&stash));
+			return (free_stash_and_return(&stash));
 		free(stash);
 		stash = temp;
 		if (ft_strchr(stash, '\n'))
-			break ;	
+			break ;
 	}
 	return (stash);
 }
 
-char    *get_line_from_stdin()
+char	*get_line_from_stdin(void)
 {
-	static char *stash= NULL;
-	char *line;
-	
+	static char	*stash = NULL;
+	char		*line;
+
 	if (read(STDIN_FILENO, 0, 0) < 0 || BUFFER_SIZE < 0)
 		return (NULL);
 	if (!stash)
